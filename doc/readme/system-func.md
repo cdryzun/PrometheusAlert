@@ -156,25 +156,8 @@ dimensions: {{.Dimensions}}
 
 特别说明：`SplitString`函数
 
-目前支持两种使用方式：
+### 5 `GetTimeDuration` 函数仅支持在PrometheusAlert的自定义模版中使用，该函数主要用于获取持续时间
 
-- 使用默认时间字符串格式输出 `{{GetTime .Timestamp}}` ,如：
+用法示例: 
 
-```
-ALiYun {{.AlertState}}信息
->**{{.AlertName}}**
->告警级别: {{.TriggerLevel}}
-开始时间: {{.Timestamp}}
-故障主机: {{SplitString .Instance 0 -5}}
-------------详细信息--------------
-metricName: {{.MetricName}}
-expression: {{.Expression}}
-signature: {{.Signature}}
-metricProject: {{.MetricProject}}
-userId: {{.UserId}}
-namespace: {{.Namespace}}
-preTriggerLevel: {{.PreTriggerLevel}}
-ruleId: {{.RuleId}}
-dimensions: {{.Dimensions}}
-**当前值：{{.CurValue}}**
-```
+> <font color="info">持续时间:</font> {{GetTimeDuration $v.startsAt $v.endsAt}}   //输出：持续时间: 15s
